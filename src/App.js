@@ -5,7 +5,9 @@ import MovieList from './components/MovieList';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
-  return <div>Hello Temba</div>;
+  return <div>
+    <MovieList movies={movies} />
+  </div>;
 };
 
 export default App;
