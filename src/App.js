@@ -4,17 +4,20 @@ import './App.css';
 import MovieList from './components/MovieList';
 
 const App = () => {
-  const [movies, setMovies] = useState([]);
+	const [movies, setMovies] = useState([]);
+	const [favourites, setFavourites] = useState([]);
+	const [searchValue, setSearchValue] = useState('');
 
-  const getMovieRequest = async () => {
-    const url = "http://www.omdbapi.com/?i=tt3896198&apikey=ac5d2b5"
+	const getMovieRequest = async (searchValue) => {
+		const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=263d22d8`;
 
-    const response = await fetch(url);
+		const response = await fetch(url);
+		const responseJson = await response.json();
 
-    const responseJson = await response.json();
-
-    console.log(responseJson);
-  }
+		if (responseJson.Search) {
+			setMovies(responseJson.Search);
+		}
+	};
 
   useEffect(() => {
     getMovieRequest();
